@@ -516,18 +516,18 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="category">🏷 Category</label>
+                    <label for="category">🏷️ Category</label>
                     <select id="category" required>
                         <option value="">Select Category</option>
                         <option value="food">🍕 Food & Dining</option>
                         <option value="transport">🚗 Transport</option>
-                        <option value="shopping">🛍 Shopping</option>
+                        <option value="shopping">🛍️ Shopping</option>
                         <option value="entertainment">🎬 Entertainment</option>
                         <option value="health">🏥 Health & Medical</option>
                         <option value="education">📚 Education</option>
                         <option value="bills">⚡ Bills & Utilities</option>
                         <option value="groceries">🛒 Groceries</option>
-                        <option value="travel">✈ Travel</option>
+                        <option value="travel">✈️ Travel</option>
                         <option value="other">📦 Other</option>
                     </select>
                 </div>
@@ -610,7 +610,7 @@
                     <div class="category-chip active" data-category="">All</div>
                     <div class="category-chip" data-category="food">🍕 Food</div>
                     <div class="category-chip" data-category="transport">🚗 Transport</div>
-                    <div class="category-chip" data-category="shopping">🛍 Shopping</div>
+                    <div class="category-chip" data-category="shopping">🛍️ Shopping</div>
                     <div class="category-chip" data-category="entertainment">🎬 Entertainment</div>
                     <div class="category-chip" data-category="health">🏥 Health</div>
                     <div class="category-chip" data-category="other">📦 Other</div>
@@ -912,10 +912,10 @@
                     categoryTotals[a] > categoryTotals[b] ? a : b
                 ) : '';
 
-            document.getElementById('periodTotal').textContent = ₹${Number(total).toFixed(2)};
+            document.getElementById('periodTotal').textContent = `₹${Number(total).toFixed(2)}`;
             document.getElementById('periodCount').textContent = count;
-            document.getElementById('avgExpense').textContent = ₹${Number(avg).toFixed(2)};
-            document.getElementById('topCategory').textContent = topCategory ? ${getCategoryIcon(topCategory)} ${getCategoryName(topCategory)} : '-';
+            document.getElementById('avgExpense').textContent = `₹${Number(avg).toFixed(2)}`;
+            document.getElementById('topCategory').textContent = topCategory ? `${getCategoryIcon(topCategory)} ${getCategoryName(topCategory)}` : '-';
         }
 
         function displayExpenses() {
@@ -960,7 +960,7 @@
                     <div class="expense-footer">
                         <span class="expense-date">${formatDate(expense.date)}</span>
                         <div>
-                            <button class="delete-btn" onclick="deleteExpense(${expense.id})">🗑 Delete</button>
+                            <button class="delete-btn" onclick="deleteExpense(${expense.id})">🗑️ Delete</button>
                         </div>
                     </div>
                 </div>
@@ -1003,13 +1003,13 @@
             const map = {
                 food: '🍕',
                 transport: '🚗',
-                shopping: '🛍',
+                shopping: '🛍️',
                 entertainment: '🎬',
                 health: '🏥',
                 education: '📚',
                 bills: '⚡',
                 groceries: '🛒',
-                travel: '✈',
+                travel: '✈️',
                 other: '📦',
                 '': '📁'
             };
@@ -1029,14 +1029,14 @@
 
             // Create CSV content
             const header = ['id', 'amount', 'description', 'category', 'date', 'timestamp'];
-            const rows = expenses.map(e => [e.id, e.amount, "${(e.description||'').replace(/"/g, '""')}", e.category, e.date, e.timestamp]);
+            const rows = expenses.map(e => [e.id, e.amount, `"${(e.description||'').replace(/"/g, '""')}"`, e.category, e.date, e.timestamp]);
             const csv = [header.join(','), ...rows.map(r => r.join(','))].join('\n');
 
             const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = expenses_${new Date().toISOString().split('T')[0]}.csv;
+            a.download = `expenses_${new Date().toISOString().split('T')[0]}.csv`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
